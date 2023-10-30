@@ -1,0 +1,38 @@
+﻿@model ProductListViewModel
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+</head>
+<body>
+    <h1>Current Date @DateTime.Now.ToLongDateString()</h1>
+    <hr />
+    <h1>We have @Model.Products.Count() products</h1>
+    <a asp-action="Add" asp-controller="Product">
+                <button type="button">Add</button>
+            </a>
+    @foreach (var item in Model.Products)
+    {
+        <div>
+            <h1>ID : @item.Id</h1>
+            <h1>Name : @item.Name</h1>
+            <h1>Category : @item.Category</h1>
+            <h1>Discount : <b> @item.Discount </b></h1>
+            <h1>Price : <b> @item.Price </b></h1>
+        </div>
+        <div>
+            <a asp-action="Update" asp-controller="Product" asp-route-myid="@item.Id">
+                <button type="button">Update</button>
+            </a>
+            @*<a href="product/update">Update</a>*@
+        </div>
+        <div>
+            <a asp-action="Delete" asp-controller="Product" asp-route-myid="@item.Id">
+                <button type="button">Delete</button>
+            </a>
+        </div>
+    }
+</body>
+</html>

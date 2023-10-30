@@ -1,0 +1,37 @@
+﻿@model ProductUpdateViewModel
+<html>
+<head>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+</head>
+
+<body>
+    <section class="container bg-success">
+
+        <form asp-controller="Product" asp-action="Update" method="post">
+            <section>
+                <label asp-for="Product.Name"></label>
+                <input asp-for="Product.Name" />
+                <span style="color:red;" asp-validation-for="Product.Name"></span>
+            </section>
+            <section>
+                <label asp-for="Product.Category"></label>
+                <input asp-for="Product.Category" />
+                <span style="color:red;" asp-validation-for="Product.Category"></span>
+            </section>
+            <section>
+                <label asp-for="Product.Price"></label>
+                <input asp-for="Product.Price" />
+                <span style="color:red;" asp-validation-for="Product.Price"></span>
+            </section>
+            <section>
+                <label asp-for="Product.Discount"></label>
+                <input asp-for="Product.Discount" />
+                <span style="color:red;" asp-validation-for="Product.Discount"></span>
+            </section>
+            <section>
+                <button class="btn btn-primary" type="submit">Update</button>
+            </section>
+        </form>
+    </section>
+</body>
+</html>
