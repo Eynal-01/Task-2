@@ -15,37 +15,64 @@ namespace Task_2.Controllers
                     {
                         Id=1,
                         Name="Product 1",
-                        Category="Flour products",
+                        Category="Product category",
                         Discount=0,
-                        Price=0.60,
-                        ImagePath="feewfew"
+                        Price=2340,
+                        ImagePath="https://packmojo.com/cms_assets/packmojo_shop_tray_and_sleeve_box_f67686e3d4.png"
                     },
                     new Product
                     {
                         Id=2,
                         Name="Product 2",
-                        Category="Sparkling waters",
+                        Category="Product category",
                         Discount=0,
-                        Price=1.5,
-                        ImagePath="feewfew"
+                        Price=5673,
+                        ImagePath="https://packmojo.com/cms_assets/packmojo_mb_s_standard_mailer_box_product_catalogue_01_21608f7745.png"
                     },
                     new Product
                     {
                         Id=3,
                         Name="Product 3",
-                        Category="Energy drinks",
+                        Category="Product category",
                         Discount=0,
-                        Price=4.7,
-                        ImagePath="feewfew"
+                        Price=6584,
+                        ImagePath="https://packmojo.com/cms_assets/medium_packmojo_rb_ml_magnetic_lid_rigid_box_product_catalogue_01_7374533248.png"
                     },
                     new Product
                     {
                         Id=4,
                         Name="Product 4",
-                        Category="Flour products",
+                        Category="Product category",
                         Discount=0,
-                        Price=0.60,
-                        ImagePath="feewfew"
+                        Price=4322,
+                        ImagePath="https://packmojo.com/cms_assets/packmojo_fc_slb_folding_carton_snap_lock_product_catalogue_01_b0a87e75e5.png"
+                    },
+                     new Product
+                    {
+                        Id=5,
+                        Name="Product 5",
+                        Category="Product category",
+                        Discount=23,
+                        Price=5435,
+                        ImagePath="https://packmojo.com/cms_assets/packmojo_shop_tray_and_sleeve_box_f67686e3d4.png"
+                    },
+                      new Product
+                    {
+                        Id=6,
+                        Name="Product 6",
+                        Category="Product category",
+                        Discount=0,
+                        Price=554,
+                        ImagePath="https://packmojo.com/cms_assets/packmojo_fc_slb_folding_carton_snap_lock_product_catalogue_01_b0a87e75e5.png"
+                    },
+                       new Product
+                    {
+                        Id=7,
+                        Name="Product 7",
+                        Category="Product category",
+                        Discount=0,
+                        Price=10000,
+                        ImagePath="https://packmojo.com/cms_assets/packmojo_mb_s_standard_mailer_box_product_catalogue_01_21608f7745.png"
                     }
         };
         public IActionResult Index()
@@ -69,9 +96,17 @@ namespace Task_2.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(ProductUpdateViewModel vm, int myid)
+        public IActionResult Update(ProductUpdateViewModel vm, int myId)
         {
-            var prod = Products[myid];
+            for (int i = 0; i < Products.Count; i++)
+            {
+                if (Products[i].Id == vm.Product.Id)
+                {
+                    myId = Products[i].Id;
+                    break;
+                }
+            }
+            var prod = Products[--myId];
             prod.Price = vm.Product.Price;
             prod.Name = vm.Product.Name;
             prod.Category = vm.Product.Category;

@@ -8,31 +8,34 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
 </head>
 <body>
-    <h1>Current Date @DateTime.Now.ToLongDateString()</h1>
+    <h1 style="margin-left:37%">Current Date @DateTime.Now.ToLongDateString()</h1>
     <hr />
-    <h1>We have @Model.Products.Count() products</h1>
+    <h1 style="margin-left:42%">We have @Model.Products.Count() products</h1>
     <a asp-action="Add" asp-controller="Product">
-        <button class="btn btn-primary" type="button">Add</button>
-            </a>
+        <button style="width:200px; height:80px; display:block; margin:auto; margin-left:46%; margin-top:30px; font-size:20px" class="btn btn-primary" type="button">Add</button>
+    </a>
     @foreach (var item in Model.Products)
     {
-        <div class="container bg-success" style="margin:10px">
-            <h1>ID : @item.Id</h1>
-            <h1>Name : @item.Name</h1>
-            <h1>Category : @item.Category</h1>
-            <h1>Discount : <b> @item.Discount </b></h1>
-            <h1>Price : <b> @item.Price </b></h1>
-        <div>
-            <a  asp-action="Update" asp-controller="Product" asp-route-myid="@item.Id">
-                <button style="width:90px; height:40px; margin:20px; display:inline-block" class="btn btn-primary" type="button">Update</button>
-            </a>
-            @*<a href="product/update">Update</a>*@
-        </div>
-        <div>
-            <a  asp-action="Delete" asp-controller="Product" asp-route-myid="@item.Id">
-                <button style="width:90px; height:40px; margin:20px; display:inline-block; background:red;" class="btn btn-primary" type="button">Delete</button>
-            </a>
-        </div>
+        <div class="container bg-primary" style="margin:10px; margin-left:60px; margin-top:60px; border-radius:10px; width:600px; display:inline-block;">
+            <img src="@item.ImagePath" style="width:400px; height:400px; display:inline-block; margin-left:60px" />
+            <div style="display:inline-block; margin-top:20px; margin-left:20px">
+                <h1>ID : @item.Id</h1>
+                <h1>Name : @item.Name</h1>
+                <h1>Category : @item.Category</h1>
+                <h1>Discount : <b> @item.Discount </b></h1>
+                <h1>Price : <b> @item.Price </b></h1>
+            </div>
+            <div style="display:inline-block;">
+                <a asp-action="Update" asp-controller="Product" asp-route-myid="@item.Id">
+                    <button style="width:110px; height:60px; margin:20px; margin-bottom:40px; background:limegreen;  font-size:20px" class="btn btn-primary" type="button">Update</button>
+                </a>
+                @*<a href="product/update">Update</a>*@
+            </div>
+            <div style="display:inline-block;">
+                <a asp-action="Delete" asp-controller="Product" asp-route-myid="@item.Id">
+                    <button style="width:110px; height:60px; margin:20px; margin-bottom:40px; background:red; font-size:20px" class="btn btn-primary" type="button">Delete</button>
+                </a>
+            </div>
         </div>
     }
 </body>
