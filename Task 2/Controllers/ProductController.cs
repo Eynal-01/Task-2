@@ -57,23 +57,28 @@ namespace Task_2.Controllers
             return View(vm);
         }
 
-        //[HttpGet]
-        //public IActionResult Update(int myid)
-        //{
-        //    var prod = Products[--myid];
+        [HttpGet]
+        public IActionResult Update(int myid)
+        {
+            var prod = Products[--myid];
+            var vm = new ProductUpdateViewModel
+            {
+                Product = prod,
+            };
+            return View(vm);
+        }
 
-        //    var vm = new ProductUpdateViewModel
-        //    {
-        //        Product = prod
-        //    };
-        //    return View(vm);
-        //}
-
-        //[HttpPost]
-        ////public IActionResult Update(ProductUpdateViewModel vm)
-        ////{
-
-        ////}
+        [HttpPost]
+        public IActionResult Update(ProductUpdateViewModel vm, int myid)
+        {
+            var prod = Products[myid];
+            prod.Price = vm.Product.Price;
+            prod.Name = vm.Product.Name;
+            prod.Category = vm.Product.Category;
+            prod.Discount = vm.Product.Discount;
+            prod.ImagePath = vm.Product.ImagePath;      
+            return RedirectToAction("index");
+        }
 
         [HttpGet]
         public IActionResult Add()
@@ -97,9 +102,9 @@ namespace Task_2.Controllers
         {
             var prod = Products[--myid];
             Products.Remove(prod);
-            foreach (var item in Products)
+            for (int i = (myid); i < Products.Count; i++)
             {
-                item.Id--;
+                Products[i].Id--;
             }
             return RedirectToAction("index");
         }
