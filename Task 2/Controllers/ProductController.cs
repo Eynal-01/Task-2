@@ -77,7 +77,7 @@ namespace Task_2.Controllers
         };
         public IActionResult Index()
         {
-            var vm = new ProductListViewModel
+            var vm = new ProductViewModel
             {
                 Products = Products
             };
@@ -106,7 +106,7 @@ namespace Task_2.Controllers
                     break;
                 }
             }
-            var prod = Products[--myId];
+            var prod = Products[myId--];
             prod.Price = vm.Product.Price;
             prod.Name = vm.Product.Name;
             prod.Category = vm.Product.Category;
