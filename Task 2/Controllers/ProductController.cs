@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using Task_2.Entities;
 using Task_2.Models;
@@ -87,7 +88,7 @@ namespace Task_2.Controllers
         [HttpGet]
         public IActionResult Update(int myid)
         {
-            var prod = Products[--myid];
+            var prod = Products.SingleOrDefault(p => p.Id == myid);
             var vm = new ProductUpdateViewModel
             {
                 Product = prod,
@@ -96,22 +97,16 @@ namespace Task_2.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(ProductUpdateViewModel vm, int myId)
+        public IActionResult Update(ProductUpdateViewModel vm)
         {
-            for (int i = 0; i < Products.Count; i++)
-            {
-                if (Products[i].Id == vm.Product.Id)
-                {
-                    myId = Products[i].Id;
-                    break;
-                }
-            }
-            var prod = Products[myId--];
+            var myId = 0;
+            myId = Products.SingleOrDefault(p => p.Id == vm.Product.Id).Id;
+            var prod = Products[--myId];
             prod.Price = vm.Product.Price;
             prod.Name = vm.Product.Name;
             prod.Category = vm.Product.Category;
             prod.Discount = vm.Product.Discount;
-            prod.ImagePath = vm.Product.ImagePath;      
+            prod.ImagePath = vm.Product.ImagePath;
             return RedirectToAction("index");
         }
 
